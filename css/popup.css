@@ -1,0 +1,379 @@
+@font-face {
+  font-family: "Let's go Digital Regular";
+  src: url("../font/Let_s_go_Digital_Regular.eot?") format("eot"), url("../font/Let_s_go_Digital_Regular.woff") format("woff"), url("../font/Let_s_go_Digital_Regular.ttf") format("truetype"), url("../font/Let_s_go_Digital_Regular.svg#LetsgoDigital-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+*, *::before, *::after {
+  box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-size: 14px;
+  background-color: #222;
+  color: #fff; }
+
+p {
+  margin: 0; }
+
+button {
+  border: none;
+  background: none; }
+
+ul, ol, li {
+  list-style: none;
+  margin: 0; }
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both; }
+
+.main-panel {
+  width: 320px;
+  height: 336px; }
+
+.header {
+  height: 32px;
+  padding: 4px 10px;
+  border-bottom: 2px solid #000;
+  background-color: #333; }
+
+.setting-btn {
+  float: right;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  cursor: pointer;
+  background: url(../img/svg/setting.svg) center/20px 20px no-repeat; }
+
+.record-options {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center; }
+  .record-options .record-item {
+    width: 80px;
+    padding: 5px 0;
+    border-radius: 4px;
+    cursor: pointer; }
+    .record-options .record-item:nth-child(1) .record-item-icon {
+      background-image: url(../img/svg/browser.svg);
+      background-size: 34px; }
+    .record-options .record-item:nth-child(2) .record-item-icon {
+      background-image: url(../img/svg/desktop.svg);
+      background-size: 24px; }
+    .record-options .record-item:nth-child(3) .record-item-icon {
+      background-image: url(../img/svg/camera.svg);
+      background-size: 22px; }
+    .record-options .record-item:hover .record-item-icon, .record-options .record-item.active .record-item-icon {
+      border-color: rgba(61, 208, 238, 0.3); }
+    .record-options .record-item:hover:nth-child(1) .record-item-icon, .record-options .record-item.active:nth-child(1) .record-item-icon {
+      background-image: url(../img/svg/browser-active.svg); }
+    .record-options .record-item:hover:nth-child(2) .record-item-icon, .record-options .record-item.active:nth-child(2) .record-item-icon {
+      background-image: url(../img/svg/desktop-active.svg); }
+    .record-options .record-item:hover:nth-child(3) .record-item-icon, .record-options .record-item.active:nth-child(3) .record-item-icon {
+      background-image: url(../img/svg/camera-active.svg); }
+  .record-options .record-item-icon {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    border: 2px solid #000;
+    border-radius: 32px;
+    background: center/ contain no-repeat;
+    transition: all 0.3s; }
+  .record-options .record-item-label {
+    margin-top: 5px;
+    transition: all 0.3s;
+    color: #999;
+    font-size: 12px; }
+
+.sound-options {
+  position: absolute;
+  top: 38px;
+  width: 280px;
+  padding: 5px;
+  line-height: 2;
+  border-radius: 5px;
+  z-index: 20;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: #414141; }
+  .sound-options .sound-item {
+    padding-left: 30px;
+    cursor: pointer; }
+    .sound-options .sound-item:hover, .sound-options .sound-item.active {
+      color: #3DC1DC; }
+    .sound-options .sound-item.active {
+      background: url(../img/svg/tick.svg) 10px center/10px no-repeat; }
+    .sound-options .sound-item.disable {
+      color: #999;
+      cursor: not-allowed; }
+
+.audio-column {
+  position: relative;
+  top: -6px;
+  display: inline-block;
+  width: 8px;
+  height: 26px;
+  margin-left: 5px;
+  overflow: hidden;
+  vertical-align: middle; }
+  .audio-column span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 6px;
+    overflow: hidden; }
+    .audio-column span::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 26px;
+      background: url(../img/audio-line.png) left bottom/cover no-repeat; }
+
+.switch-bar {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px; }
+  .switch-bar.hide {
+    z-index: -1; }
+  .switch-bar .switch-left {
+    float: left;
+    position: relative;
+    height: 40px; }
+  .switch-bar .switch-right {
+    position: relative;
+    float: right;
+    width: 40px;
+    height: 14px;
+    margin-top: 13px;
+    border-radius: 10px;
+    background-color: #919191;
+    cursor: pointer; }
+    .switch-bar .switch-right::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      background-color: #fff;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s; }
+    .switch-bar .switch-right.active {
+      background-color: #3DD0EE; }
+      .switch-bar .switch-right.active::after {
+        left: 22px; }
+  .switch-bar .sound-label {
+    cursor: pointer; }
+    .switch-bar .sound-label .sound-label-text {
+      display: inline-block;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    .switch-bar .sound-label span {
+      vertical-align: middle; }
+    .switch-bar .sound-label .sound-drop-icon {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 20px;
+      margin-top: 3px;
+      background: url(../img/svg/arrow-down.svg) center/10px no-repeat; }
+    .switch-bar .sound-label .drop-trigger {
+      position: absolute;
+      bottom: -7px;
+      left: 6px;
+      border: 12px solid transparent;
+      border-left-width: 6px;
+      border-right-width: 6px;
+      border-top: none;
+      border-bottom-color: #414141; }
+
+.start-btn {
+  position: relative;
+  width: 180px;
+  height: 40px;
+  line-height: 40px;
+  margin: 20px auto;
+  text-align: center; }
+  .start-btn-inline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 20px;
+    background-color: #F55053;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s; }
+    .start-btn-inline:hover {
+      background-color: #f3292d; }
+  .start-btn-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed; }
+
+.panel-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center; }
+  .panel-mask .wrapper {
+    position: relative;
+    width: 100%; }
+  .panel-mask .share-tips {
+    color: #666; }
+  .panel-mask .cancel-btn {
+    height: 32px;
+    line-height: 32px;
+    margin: 20px;
+    border-radius: 3px;
+    color: #666;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s; }
+    .panel-mask .cancel-btn:hover {
+      background-color: #ccc; }
+  .panel-mask .count-down-bg {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    animation: apower-rotate 1s infinite;
+    background: url(../img/number-bg.png) center/contain no-repeat; }
+  .panel-mask .count-down-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 100px;
+    text-align: center;
+    font-size: 48px;
+    color: #BB241B; }
+
+.record-panel {
+  display: flex;
+  padding: 0 18px 0 10px; }
+  .record-panel .time {
+    float: right;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    cursor: default;
+    font-size: 26px;
+    text-align: right;
+    font-family: "Let's go Digital Regular"; }
+  .record-panel .pause-btn,
+  .record-panel .stop-btn {
+    float: left;
+    width: 30px;
+    height: 40px;
+    background: center/ 20px no-repeat;
+    cursor: pointer; }
+    .record-panel .pause-btn:hover,
+    .record-panel .stop-btn:hover {
+      background-color: #000; }
+  .record-panel .pause-btn {
+    background-image: url(../img/icons/pause.svg); }
+    .record-panel .pause-btn.continue {
+      background-image: url(../img/icons/play.svg); }
+  .record-panel .stop-btn {
+    background-image: url(../img/svg/stop.svg); }
+
+.setting-panel {
+  position: absolute;
+  top: 0;
+  left: 320px;
+  width: 320px;
+  height: 336px;
+  z-index: 20;
+  background-color: #222;
+  transition: all 0.3s ease-out;
+  user-select: none; }
+  .setting-panel.open {
+    left: 0; }
+  .setting-panel .back-btn {
+    float: left;
+    margin-top: 2px;
+    padding-left: 20px;
+    background: url(../img/svg/arrow-left.svg) 4px center/7px no-repeat;
+    cursor: pointer;
+    color: #aaa; }
+  .setting-panel .setting-body {
+    padding: 30px; }
+  .setting-panel .setting-item {
+    margin: 20px 0; }
+  .setting-panel .setting-item-label {
+    color: #aaa; }
+  .setting-panel .select-options {
+    position: relative;
+    height: 28px;
+    margin-top: 6px;
+    border-radius: 5px;
+    background-color: #414141; }
+    .setting-panel .select-options.open .options-list {
+      display: block; }
+  .setting-panel .option-current {
+    line-height: 28px;
+    padding: 0 10px;
+    padding-right: 30px;
+    background: url(../img/svg/arrow-down.svg) right 10px center/10px no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  .setting-panel .options-list {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    max-height: 200px;
+    line-height: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #414141;
+    overflow: auto; }
+  .setting-panel .options-item {
+    padding: 5px 0;
+    padding-left: 20px;
+    cursor: pointer; }
+    .setting-panel .options-item:hover, .setting-panel .options-item.active {
+      color: #3DC1DC; }
+    .setting-panel .options-item.active {
+      background: url(../img/svg/tick.svg) left center/10px no-repeat; }
+  .setting-panel .setting-item-tips {
+    margin-left: 20px;
+    font-size: 12px;
+    color: #888; }
+
+@keyframes apower-rotate {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); } }

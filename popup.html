@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+
+<body>
+  <div id="app" @click="onDocumentClick">
+    <div class="main-panel" v-if="recordStatus === 'ready'">
+      <div class="header">
+        <i class="setting-btn" @click="openSetting = true"></i>
+      </div>
+      <div class="record-options">
+        <div class="record-item" v-for="item in recordOptions" :class="{active: selectedRecordOption.value === item.value && !disableRecord}"
+          @click="selectOption(item)">
+          <i class="record-item-icon"></i>
+          <p class="record-item-label">{{item.label}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="switch-bar">
+          <div class="switch-left">
+            <span class="sound-label" @click.stop="toggleSoundSelector">
+              <span class="sound-label-text">{{selectedSoundOption.label}}</span>
+              <span class="sound-drop-icon" v-show="selectedRecordOption.soundOptions.length > 1">
+                <i class="drop-trigger" v-show="visibleSoundSelector"></i>
+              </span>
+            </span>
+            <span class="audio-column" v-show="sound && selectedSoundOption.value.includes('microphone')">
+              <span :style="{height: audioColumnHeight + 'px'}"></span>
+            </span>
+            <div class="sound-options" v-show="visibleSoundSelector">
+              <div class="sound-item" :class="{active: item === selectedSoundOption, disable: item.disable }" v-for="item in selectedRecordOption.soundOptions"
+                @click="selectSound(item)">{{item.label}}</div>
+            </div>
+          </div>
+          <div class="switch-right" :class="{active: sound}" @click="toggleSound"></div>
+        </div>
+        <div class="switch-bar clearfix" :class="{hide: selectedRecordOption.value === 'camera'}">
+          <div class="switch-left" v-i18n="'cameraPreview'"></div>
+          <div class="switch-right" :class="{active: camera}" @click="toggleCamera"></div>
+        </div>
+      </div>
+      <div>
+        <div class="start-btn" @click="start">
+          <span class="start-btn-inline" v-i18n="'record'"></span>
+          <span class="start-btn-mask" v-show="disableRecord" @click.stop></span>
+        </div>
+      </div>
+      <!-- <div class="panel-mask" v-show="requestSharePending || countDownPending">
+        <div class="wrapper" v-show="requestSharePending">
+          <p class="share-tips" v-i18n="'shareTips'"></p>
+          <div class="cancel-btn" @click="cancelShare" v-i18n="'cancel'"></div>
+        </div>
+        <div class="wrapper count-down" v-show="countDownPending">
+          <div class="count-down-bg"></div>
+          <div class="count-down-number">{{countDownNumber}}</div>
+        </div>
+      </div> -->
+    </div>
+    <div class="setting-panel" :class="{open: openSetting}">
+      <div class="header">
+        <span class="back-btn" v-i18n="'record'" @click="openSetting = false"></span>
+      </div>
+      <div class="setting-body">
+        <div class="setting-item">
+          <label class="setting-item-label" v-i18n="'microphone'"></label>
+          <p class="setting-item-tips" v-if="!audioInputDevices.length" data-i18n="lackDeviceTips"></p>
+          <div class="select-options" v-if="audioInputDevices.length" :class="{open: openSettingItem === 'audio'}">
+            <p class="option-current" @click.stop="openSettingItem === 'audio' ? openSettingItem = '' : openSettingItem = 'audio'"
+              :title="selectedAudioInput.label">
+              {{selectedAudioInput.label}}
+            </p>
+            <ul class="options-list">
+              <li class="options-item" v-for="item in audioInputDevices" @click="selectAudioInput(item)" :class="{ active: item === selectedAudioInput }">{{item.label}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="setting-item">
+          <label class="setting-item-label" v-i18n="'camera'"></label>
+          <p class="setting-item-tips" v-if="!videoInputDevices.length" data-i18n="lackDeviceTips"></p>
+          <div class="select-options" v-if="videoInputDevices.length" :class="{open: openSettingItem === 'video'}">
+            <p class="option-current" @click.stop="openSettingItem === 'video' ? openSettingItem = '' : openSettingItem = 'video'"
+              :title="selectedVideoInput.label">
+              {{selectedVideoInput.label}}
+            </p>
+            <ul class="options-list">
+              <li class="options-item" v-for="item in videoInputDevices" @click="selectVideoInput(item)" :class="{ active: item === selectedVideoInput }">{{item.label}}</li>
+            </ul>
+          </div>
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+
+    <div class="record-panel" v-if="recordStatus !== 'ready'">
+      <div class="pause-btn" :class="{continue: recordStatus === 'pause'}" @click="pause"></div>
+      <div class="stop-btn" @click="stop"></div>
+      <div class="time">{{recordTimeFormat}}</div>
+    </div>
+
+  </div>
+
+  <script src="js/vue/vue.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+
+</html>

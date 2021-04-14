@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Microphone/Camera Access</title>
+    <style>
+        .contain {
+            width: 1200px;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        p {
+            font-size: 16px;
+        }
+        img {
+            width: auto\9;
+            height: auto;
+            width: 500px;
+        }
+        #step1{
+            margin-bottom: 30px;
+        }
+        .accessError{
+            margin-bottom: 46px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <h1 data-i18n="accessTitle">Microphone/Camera Access</h1>
+        <div>
+            <p data-i18n="getAccess">
+                Nimbus needs access to you microphone or camera to record audio.
+                Please grant access to start recording.
+            </p>
+            <div class="access_error">
+                <p class="accessError">
+                    <b data-i18n="accessError">
+                        Nimbus failed to access to your microphone or camera.
+                        Please change the media setting in the location bar.
+                        Then close this tab and try again.
+                    </b>
+                </p>
+                <h3 data-i18n="stepOne"></h3>
+                <img id="step1" src="../img/step1-camera-en.png" alt="" srcset="">
+                <h3 data-i18n="stepSecondCamera"></h3>
+                <img id="step2" src="../img/step2-camera-en.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+<script src="./camera.js"></script>
+</body>
+</html>

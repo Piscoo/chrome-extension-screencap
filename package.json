@@ -1,0 +1,14 @@
+{
+  "name": "chrome-extension-screencap",
+  "version": "1.0.0",
+  "description": "chrome extension screen recorder",
+  "main": "index.js",
+  "scripts": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
